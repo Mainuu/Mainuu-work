@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript basics</title>
+    <!-- <link rel="stylesheet" href="./learn.css"> -->
+</head>
+<body>
+    
+    <div class="learn" >
+    <h1 >
+hello there learners
+    </h1></div>
+    <h2 class="section">today we learn html,javascript,css</h2>
+    <div class="circles"></div >
+    
+
+    
+     <script src="./learn.js"> </script>
+
+
+    <script type="text/javascript">  
+
+// Accessing field value by document object
+        function printvalue(){  
+        var name=document.form1.name.value;  
+        alert("Welcome:"+name);}  
+        </script>  
+        <form name="form1">  
+        Enter your Name:<input type="text" name="name"/>  
+        <input type="button" onclick="printvalue()" value="print your name"/>  
+        </form>  
+        <script type="text/javascript">  
+            function getcube(){  
+            var number=document.getElementById("number").value;  
+            alert(number*number*number);  
+            }  
+
+// The document.getElementById() method returns the element of specified id.
+            </script>  
+            <form>  
+            Enter No:<input type="text" id="number" name="number"/><br/>  
+            <input type="button" value="cube" onclick="getcube()"/>  
+            </form>
+ <!-- The document.getElementsByName() method returns all the element of specified name. -->
+            <script type="text/javascript">  
+                function totalelements()  
+                {  
+                var allgenders=document.getElementsByName("gender");  
+                alert("Total Genders:"+allgenders.length);  
+                }  
+                </script>  
+                <form>  
+                Male:<input type="radio" name="gender" value="male">  
+                Female:<input type="radio" name="gender" value="female">  
+                  
+                <input type="button" onclick="totalelements()" value="Total Genders">  
+                </form>  
+
+<!-- The document.getElementsByTagName() method returns all the element of specified tag name.
+In this example, we going to count total number of paragraphs used in the document. 
+To do this, we have called the document.getElementsByTagName("p") 
+method that returns the total paragraphs.-->
+                <script type="text/javascript">  
+                    function countpara(){  
+                    var totalpara=document.getElementsByTagName("p");  
+                    alert("total p tags are: "+totalpara.length);  
+                      
+                    }  
+                    </script>  
+                    <p>This is a pragraph</p>  
+                    <p>Here we are going to count total number of paragraphs by getElementByTagName() method.</p>  
+                    <p>Let's see the simple example</p>  
+                    <button onclick="countpara()">count paragraph</button>  
+
+<!-- Another example of document.getElementsByTagName() method
+In this example, we going to count total number of h2 and h3 tags used in the document. -->
+                    <script type="text/javascript">  
+                        function counth2(){  
+                        var totalh2=document.getElementsByTagName("h2");  
+                        alert("total h2 tags are: "+totalh2.length);  
+                        }  
+                        function counth3(){  
+                        var totalh3=document.getElementsByTagName("h3");  
+                        alert("total h3 tags are: "+totalh3.length);  
+                        }  
+                        </script>  
+                        <h2>This is h2 tag</h2>  
+                        <h2>This is h2 tag</h2>  
+                        <h3>This is h3 tag</h3>  
+                        <h3>This is h3 tag</h3>  
+                        <h3>This is h3 tag</h3>  
+                        <button onclick="counth2()">count h2</button>  
+                        <button onclick="counth3()">count h3</button> 
+
+    
+    
+</body>
+</html>  
