@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio-web</title>
+    <link rel="stylesheet" href="/potfolio.css">
+    <link rel="website icon" href="./images/logo 2.jfif">
+   
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="./images/photo.jfif" alt="Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="./login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="about" class="hero">
+        <h1> Hello there Welcome to Mainuu Portfolio</h1>
+        <p>I am a web developer passionate about creating beautiful and functional websites.</p>
+        <p>Hire Me!!!😀😀🤸‍♀️ </p>
+        
+    </section>
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project">
+            <p><a href="#"><h3>Project 1</h3></a></p>
+            <p>Career goals.</p>
+        </div>
+        <div class="project">
+            <p><a href="#"><h3>Project 2</h3></a></p>
+            <p>Good habits for personal Growth.</p>
+        </div>
+        <div class="project">
+            <p><a href="https://manybooks.net/" target="_blank"><h3>Project 3</h3></a></p>
+            <p>Interesting novels to read during free time.</p>
+        </div>
+        <div class="project">
+            <p><a href="https://ww1.goojara.to/watch-movies" target="_blank"><h3>Project 4</h3></a></p>
+            <p>Best movies to watch during free time.</p>
+        </div>
+        
+        
+        
+        
+        
+        
+       
+      
+        
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="https://mail.yahoo.com/" target="_blank"> Email Me</a></p>
+        <p>LinkedIn: <a href="https://ke.linkedin.com/" target="_blank">My LinkedIn</a></p>
+        <p>GitHub: <a href="https://github.com/" target="_blank">My GitHub</a></p>
+        <p>facebook: <a href="https://www.facebook.com" target="_blank">Visit my Facebook</a></p>
+        
+    </section>
+    
+    <footer class="footer">
+        <p>© Project Portfolio Office 2025</p>
+        <p>Terms & Conditions</p>
+        <p>Security</p>
+    </footer>
+
+</body>
+</html>
