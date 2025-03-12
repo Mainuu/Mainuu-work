@@ -1,0 +1,344 @@
+import calendar
+year=2025
+month= 3 #march
+x=calendar.month(year,month)
+print (x)
+
+
+import turtle
+
+# Set up the turtle
+pen = turtle.Turtle()
+pen.pensize(3)
+pen.speed(3)
+
+# Colors for the square
+colors = ['red', 'blue', 'green', 'purple', 'violet', 'yellow', 'orange']
+
+t = turtle.Turtle()
+t.speed(1000)
+turtle.bgcolor('black')
+
+for i in range(200):
+    t.pencolor(colors[i % 7])  # Change color
+    t.width(i / 100 + 1)
+    t.forward(i)
+    t.left(59)
+
+turtle.done()
+
+
+import turtle
+
+# Set up the turtle
+pen = turtle.Turtle()
+pen.pensize(3)
+pen.speed(3)
+
+# Colors for the spiral
+colors = ['red', 'blue', 'green', 'purple', 'violet', 'yellow', 'orange']
+
+t = turtle.Turtle()
+t.speed(0)
+turtle.bgcolor('black')
+
+# Draw a colorful spiral
+for i in range(360):
+    t.pencolor(colors[i % 7])  # Change color
+    t.width(i / 100 + 1)
+    t.forward(i * 2 / 3)
+    t.left(59)
+
+turtle.done()
+
+import tkinter as tk
+
+def on_click(button_text):
+    if button_text == "=":
+        try:
+            result = str(eval(entry_var.get()))
+            entry_var.set(result)
+        except Exception:
+            entry_var.set("Error")
+    elif button_text == "C":
+        entry_var.set("")
+    else:
+        entry_var.set(entry_var.get() + button_text)
+
+# Create the main window
+root = tk.Tk()
+root.title("Basic Calculator")
+
+entry_var = tk.StringVar()
+entry = tk.Entry(root, textvariable=entry_var, font=("Arial", 20), justify="right", bd=10, relief=tk.RIDGE)
+entry.grid(row=0, column=0, columnspan=4)
+
+# Define buttons
+buttons = [
+    ('7', '8', '9', '/'),
+    ('4', '5', '6', '*'),
+    ('1', '2', '3', '-'),
+    ('C', '0', '=', '+')
+]
+
+for r, row in enumerate(buttons):
+    for c, btn_text in enumerate(row):
+        button = tk.Button(root, text=btn_text, font=("Arial", 20), command=lambda b=btn_text: on_click(b), height=2, width=5)
+        button.grid(row=r + 1, column=c)
+
+root.mainloop()
+
+
+import tkinter as tk
+import requests
+
+# Function to get weather data
+def get_weather():
+    city = city_entry.get()
+    api_key = "your_api_key_here"  # Replace with your OpenWeatherMap API key
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        if data["cod"] == 200:
+            weather = data["weather"][0]["description"].capitalize()
+            temp = data["main"]["temp"]
+            result_label.config(text=f"Weather: {weather}\nTemperature: {temp}°C")
+        else:
+            result_label.config(text="City not found")
+    except Exception as e:
+        result_label.config(text="Error fetching data")
+
+# Create main window
+root = tk.Tk()
+root.title("Weather App")
+
+# Input field
+city_entry = tk.Entry(root, font=("Arial", 16))
+city_entry.pack(pady=10)
+
+# Button to fetch weather
+get_weather_btn = tk.Button(root, text="Get Weather", font=("Arial", 16), command=get_weather)
+get_weather_btn.pack()
+
+# Label to display result
+result_label = tk.Label(root, text="", font=("Arial", 16))
+result_label.pack(pady=10)
+
+root.mainloop()
+
+
+
+
+import tkinter as tk
+
+# Function to add task
+def add_task():
+    task = task_entry.get()
+    if task:
+        task_list.insert(tk.END, task)
+        task_entry.delete(0, tk.END)
+
+# Function to remove selected task
+def remove_task():
+    selected_task = task_list.curselection()
+    if selected_task:
+        task_list.delete(selected_task)
+
+# Function to clear all tasks
+def clear_tasks():
+    task_list.delete(0, tk.END)
+
+# Create main window
+root = tk.Tk()
+root.title("To-Do List App")
+root.geometry("400x500")
+
+# Input field
+task_entry = tk.Entry(root, font=("Arial", 16))
+task_entry.pack(pady=10)
+
+# Buttons
+add_btn = tk.Button(root, text="Add Task", font=("Arial", 14), command=add_task)
+add_btn.pack()
+
+remove_btn = tk.Button(root, text="Remove Task", font=("Arial", 14), command=remove_task)
+remove_btn.pack()
+
+clear_btn = tk.Button(root, text="Clear All", font=("Arial", 14), command=clear_tasks)
+clear_btn.pack()
+
+# Task list
+task_list = tk.Listbox(root, font=("Arial", 14), width=40, height=15)
+task_list.pack(pady=10)
+
+root.mainloop()
+
+
+
+
+
+
+import tkinter as tk
+import numpy as np
+
+# Initialize the game board
+def reset_board():
+    global board, current_player
+    board = np.full((3, 3), "")
+    current_player = "X"
+    for row in range(3):
+        for col in range(3):
+            buttons[row][col].config(text="", state=tk.NORMAL)
+
+# Handle button click
+def make_move(row, col):
+    global current_player
+    if board[row, col] == "":
+        board[row, col] = current_player
+        buttons[row][col].config(text=current_player, state=tk.DISABLED)
+        if check_winner(current_player):
+            status_label.config(text=f"Player {current_player} Wins!")
+            disable_buttons()
+        elif "" not in board:
+            status_label.config(text="It's a Tie!")
+        else:
+            current_player = "O" if current_player == "X" else "X"
+            status_label.config(text=f"Player {current_player}'s Turn")
+
+# Check for a winner
+def check_winner(player):
+    for i in range(3):
+        if all(board[i, :] == player) or all(board[:, i] == player):
+            return True
+    if all(board.diagonal() == player) or all(np.fliplr(board).diagonal() == player):
+        return True
+    return False
+
+# Disable buttons after win
+def disable_buttons():
+    for row in buttons:
+        for button in row:
+            button.config(state=tk.DISABLED)
+
+# Create main window
+root = tk.Tk()
+root.title("Tic-Tac-Toe")
+
+board = np.full((3, 3), "")
+current_player = "X"
+buttons = []
+
+# Status label
+status_label = tk.Label(root, text=f"Player {current_player}'s Turn", font=("Arial", 14))
+status_label.grid(row=0, column=0, columnspan=3)
+
+# Create buttons grid
+for r in range(3):
+    row_buttons = []
+    for c in range(3):
+        btn = tk.Button(root, text="", font=("Arial", 20), width=5, height=2, 
+                        command=lambda r=r, c=c: make_move(r, c))
+        btn.grid(row=r + 1, column=c)
+        row_buttons.append(btn)
+    buttons.append(row_buttons)
+
+# Reset button
+reset_btn = tk.Button(root, text="Reset", font=("Arial", 14), command=reset_board)
+reset_btn.grid(row=4, column=0, columnspan=3)
+
+root.mainloop()
+
+
+
+
+import pygame
+import random
+
+# Initialize pygame
+pygame.init()
+
+# Screen dimensions
+WIDTH, HEIGHT = 400, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Flappy Bird Clone")
+
+# Colors
+WHITE = (255, 255, 255)
+BLUE = (0, 150, 255)
+GREEN = (0, 255, 0)
+
+# Bird settings
+bird_x, bird_y = 50, HEIGHT // 2
+bird_radius = 15
+gravity = 0.5
+velocity = 0
+jump_strength = -8
+
+# Pipe settings
+pipe_width = 50
+pipe_gap = 150
+pipes = []
+pipe_speed = 3
+spawn_pipe_timer = 0
+
+# Game loop variables
+running = True
+clock = pygame.time.Clock()
+score = 0
+
+# Game loop
+while running:
+    screen.fill(BLUE)
+    
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                velocity = jump_strength
+    
+    # Bird physics
+    velocity += gravity
+    bird_y += velocity
+    pygame.draw.circle(screen, WHITE, (bird_x, int(bird_y)), bird_radius)
+    
+    # Pipe movement and spawning
+    spawn_pipe_timer += 1
+    if spawn_pipe_timer > 90:
+        pipe_height = random.randint(100, 400)
+        pipes.append([WIDTH, pipe_height])
+        spawn_pipe_timer = 0
+    
+    for pipe in pipes:
+        pipe[0] -= pipe_speed
+        pygame.draw.rect(screen, GREEN, (pipe[0], 0, pipe_width, pipe[1]))
+        pygame.draw.rect(screen, GREEN, (pipe[0], pipe[1] + pipe_gap, pipe_width, HEIGHT))
+        
+        # Collision detection
+        if bird_x + bird_radius > pipe[0] and bird_x - bird_radius < pipe[0] + pipe_width:
+            if bird_y - bird_radius < pipe[1] or bird_y + bird_radius > pipe[1] + pipe_gap:
+                running = False
+        
+        # Score update
+        if pipe[0] + pipe_width == bird_x:
+            score += 1
+    
+    # Remove off-screen pipes
+    pipes = [pipe for pipe in pipes if pipe[0] > -pipe_width]
+    
+    # Check if bird hits the ground or ceiling
+    if bird_y + bird_radius > HEIGHT or bird_y - bird_radius < 0:
+        running = False
+    
+    # Display score
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Score: {score}", True, WHITE)
+    screen.blit(score_text, (10, 10))
+    
+    pygame.display.update()
+    clock.tick(30)
+
+pygame.quit()
